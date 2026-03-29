@@ -49,6 +49,11 @@
         <a href="/">Home</a><a href="/services">Services</a><a href="/about" class="active">About</a><a href="/portfolio">Results</a><a href="/insights">Insights</a><a href="/contact">Contact</a>
       </div>
       <a href="https://calendly.com/trwcommercial/marketing-consultation" target="_blank" class="nav-cta">Free Consultation</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="/">Home</a><a href="/services">Services</a><a href="/about">About</a><a href="/portfolio">Results</a><a href="/insights">Insights</a><a href="/contact">Contact</a>
+      <a href="https://calendly.com/trwcommercial/marketing-consultation" target="_blank" class="m-cta">Free Consultation &rarr;</a>
     </div>
   </nav>
 
@@ -169,6 +174,8 @@
   <script>
     const observer=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:0.1});
     document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
-  </script>
+    var b=document.getElementById('burger'),m=document.getElementById('mobileMenu');
+  if(b&&m){b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('open');m.classList.remove('open');});});}
+</script>
 </body>
 </html>
