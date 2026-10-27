@@ -97,3 +97,13 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
+/* PRECISION 2.0: Interactive service preview */
+(function(){
+const tabs=[...document.querySelectorAll('[data-p2-service]')];
+const content={web:{tag:'WEB EXPERIENCE',headline:'TURN CLICKS\nINTO CLIENTS',button:'GET STARTED →',float:'BUILT TO CONVERT',label:'CONVERSION-FOCUSED WEB DESIGN',desc:'Fast, clear pages built to make the next step obvious.'},ads:{tag:'CAMPAIGN STUDIO',headline:'REACH THE RIGHT\nCUSTOMERS',button:'LAUNCH CAMPAIGN ↗',float:'LEAD FLOW ACTIVE',label:'PAID ADVERTISING',desc:'Focused campaigns that connect real demand to your business.'},auto:{tag:'FOLLOW-UP SYSTEM',headline:'EVERY LEAD.\nFOLLOWED UP.',button:'BOOK A CALL →',float:'WORKFLOW ACTIVE',label:'LEAD AUTOMATION',desc:'Smart follow-up that keeps conversations moving after the first click.'}};
+const targets={tag:document.getElementById('p2-preview-tag'),headline:document.getElementById('p2-graphic-headline'),button:document.getElementById('p2-graphic-button'),float:document.getElementById('p2-graphic-float'),label:document.getElementById('p2-service-label'),desc:document.getElementById('p2-service-desc')};
+if(!tabs.length||Object.values(targets).some(x=>!x))return;
+function select(tab){const d=content[tab.dataset.p2Service];if(!d)return;tabs.forEach(t=>{const selected=t===tab;t.classList.toggle('is-active',selected);t.setAttribute('aria-selected',String(selected));t.tabIndex=selected?0:-1});targets.tag.textContent=d.tag;targets.headline.textContent=d.headline;const accent=document.createElement('span');accent.textContent='.';targets.headline.appendChild(accent);targets.button.textContent=d.button;targets.float.textContent=d.float;targets.label.textContent=d.label;targets.desc.textContent=d.desc;}
+tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>select(tab));tab.addEventListener('keydown',e=>{if(!['ArrowDown','ArrowUp','ArrowRight','ArrowLeft','Home','End'].includes(e.key))return;e.preventDefault();const next=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowDown'||e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[next].focus();select(tabs[next]);});});
+})();
