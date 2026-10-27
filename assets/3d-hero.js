@@ -1,316 +1,99 @@
-
-/* PRECISION DIGITAL MARKETING
-   Interactive Three.js Hero - Version 1.0 */
-
-document.addEventListener("DOMContentLoaded", async () => {
-  const container = document.getElementById("pdm-3d-hero");
-  if (!container) return;
-
-  const reduceMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  );
-
-  // Avoid heavy WebGL rendering on reduced-motion devices.
-  if (reduceMotion.matches) return;
-
-  let THREE;
-
-  try {
-    THREE = await import(
-      "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"
-    );
-  } catch (error) {
-    console.warn("3D engine could not load:", error);
-    return;
-  }
-
-  let renderer;
-
-  try {
-    renderer = new THREE.WebGLRenderer({
-      alpha: true,
-      antialias: true,
-      powerPreference: "high-performance"
-    });
-  } catch (error) {
-    console.warn("WebGL is unavailable:", error);
-    return;
-  }
-
-  renderer.setPixelRatio(
-    Math.min(window.devicePixelRatio || 1, 1.75)
-  );
-
-  renderer.setClearColor(0x000000, 0);
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.4;
-
-  container.appendChild(renderer.domElement);
-
-  const scene = new THREE.Scene();
-
-  const camera = new THREE.PerspectiveCamera(
-    38,
-    1,
-    0.1,
-    100
-  );
-
-  camera.position.set(0, 0, 9);
-
-  // Main sculpture group
-  const sculpture = new THREE.Group();
-  scene.add(sculpture);
-
-  // Dark metallic core
-  const coreGeometry = new THREE.TorusKnotGeometry(
-    1.45,
-    0.43,
-    180,
-    20,
-    2,
-    3
-  );
-
-  const coreMaterial = new THREE.MeshPhysicalMaterial({
-    color: 0x7d899d,
-    metalness: 0.92,
-    roughness: 0.24,
-    clearcoat: 1,
-    clearcoatRoughness: 0.16
-  });
-
-  const core = new THREE.Mesh(
-    coreGeometry,
-    coreMaterial
-  );
-
-  sculpture.add(core);
-
-  // Geometric outer wireframe
-  const frameGeometry = new THREE.IcosahedronGeometry(
-    2.45,
-    1
-  );
-
-  const frameMaterial = new THREE.MeshBasicMaterial({
-    color: 0xe74c3c,
-    wireframe: true,
-    transparent: true,
-    opacity: 0.17,
-    depthWrite: false
-  });
-
-  const frame = new THREE.Mesh(
-    frameGeometry,
-    frameMaterial
-  );
-
-  sculpture.add(frame);
-
-  // Inner glowing red structure
-  const innerGeometry = new THREE.IcosahedronGeometry(
-    1.15,
-    1
-  );
-
-  const innerMaterial = new THREE.MeshBasicMaterial({
-    color: 0xc0392b,
-    wireframe: true,
-    transparent: true,
-    opacity: 0.2,
-    depthWrite: false
-  });
-
-  const inner = new THREE.Mesh(
-    innerGeometry,
-    innerMaterial
-  );
-
-  sculpture.add(inner);
-
-  // Cinematic lighting
-  scene.add(
-    new THREE.AmbientLight(0xffffff, 1.4)
-  );
-
-  const mainLight = new THREE.DirectionalLight(
-    0xffffff,
-    3.5
-  );
-  mainLight.position.set(3, 5, 6);
-  scene.add(mainLight);
-
-  const redLight = new THREE.PointLight(
-    0xff392b,
-    75,
-    14
-  );
-  redLight.position.set(-3, 2, 3);
-  scene.add(redLight);
-
-  const blueLight = new THREE.PointLight(
-    0x2864bb,
-    45,
-    14
-  );
-  blueLight.position.set(3, -3, 2);
-  scene.add(blueLight);
-
-  // Subtle floating particles
-  const particleCount = 110;
-  const positions = new Float32Array(
-    particleCount * 3
-  );
-
-  for (let i = 0; i < particleCount; i++) {
-    const index = i * 3;
-
-    positions[index] = (Math.random() - 0.5) * 11;
-    positions[index + 1] = (Math.random() - 0.5) * 8;
-    positions[index + 2] = (Math.random() - 0.5) * 6;
-  }
-
-  const particleGeometry = new THREE.BufferGeometry();
-
-  particleGeometry.setAttribute(
-    "position",
-    new THREE.BufferAttribute(positions, 3)
-  );
-
-  const particleMaterial = new THREE.PointsMaterial({
-    color: 0xe74c3c,
-    size: 0.025,
-    transparent: true,
-    opacity: 0.6,
-    sizeAttenuation: true
-  });
-
-  const particles = new THREE.Points(
-    particleGeometry,
-    particleMaterial
-  );
-
-  scene.add(particles);
-
-  // Mouse interaction
-  const mouse = { x: 0, y: 0 };
-  const smoothMouse = { x: 0, y: 0 };
-
-  function handleMouseMove(event) {
-    if (window.innerWidth <= 768) return;
-
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = (event.clientY / window.innerHeight) * 2 - 1;
-  }
-
-  window.addEventListener(
-    "pointermove",
-    handleMouseMove,
-    { passive: true }
-  );
-
-  // Resize handling
-  function resize() {
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-
-    if (!width || !height) return;
-
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-
-    renderer.setSize(width, height, false);
-
-    const mobile = window.innerWidth <= 768;
-    sculpture.scale.setScalar(mobile ? 0.72 : 1);
-  }
-
-  const resizeObserver = new ResizeObserver(resize);
-  resizeObserver.observe(container);
-  resize();
-
-  // Animation
-  const clock = new THREE.Clock();
-  let animationFrame = null;
-  let active = true;
-
-  function animate() {
-    if (!active) return;
-
-    animationFrame = requestAnimationFrame(animate);
-
-    const delta = Math.min(clock.getDelta(), 0.05);
-    const elapsed = clock.elapsedTime;
-
-    smoothMouse.x += (
-      mouse.x - smoothMouse.x
-    ) * 0.035;
-
-    smoothMouse.y += (
-      mouse.y - smoothMouse.y
-    ) * 0.035;
-
-    core.rotation.x += delta * 0.09;
-    core.rotation.y += delta * 0.16;
-
-    frame.rotation.x -= delta * 0.045;
-    frame.rotation.y += delta * 0.07;
-
-    inner.rotation.y -= delta * 0.12;
-
-    sculpture.rotation.y += (
-      smoothMouse.x * 0.28 - sculpture.rotation.y
-    ) * 0.025;
-
-    sculpture.rotation.x += (
-      -smoothMouse.y * 0.18 - sculpture.rotation.x
-    ) * 0.025;
-
-    sculpture.position.y =
-      Math.sin(elapsed * 0.65) * 0.12;
-
-    particles.rotation.y += delta * 0.004;
-
-    renderer.render(scene, camera);
-  }
-
-  function setActive(shouldRun) {
-    if (active === shouldRun) return;
-
-    active = shouldRun;
-
-    if (active) {
-      clock.getDelta();
-      animate();
-    } else if (animationFrame !== null) {
-      cancelAnimationFrame(animationFrame);
-      animationFrame = null;
+/* PRECISION DIGITAL MARKETING | INTERACTIVE GROWTH ENGINE v2
+   No external libraries required. 3D depth uses native CSS transforms.
+   Dashboard numbers are campaign examples, not live analytics. */
+(() => {
+  'use strict';
+  function init() {
+    const dashboard = document.getElementById('pdm-dashboard');
+    const stage = document.getElementById('pdm-stage');
+    if (!dashboard || !stage) return;
+    const byId = id => document.getElementById(id);
+    const modes = {
+      ads: { title: 'Paid ads that bring leads', icon: '↗', label: 'LEADS GENERATED', value: '51', detail: 'In under 24 hours', sideLabel: 'COST PER LEAD', sideValue: '$0.50', sideDetail: 'Villa Fernando campaign', chart: 'LEAD ACTIVITY', event: 'New lead captured', desc: 'Campaign → landing page → inquiry', bars: [23,36,30,53,49,72,66,91,82,100] },
+      sites: { title: 'Websites built to convert', icon: '▣', label: 'THE OBJECTIVE', value: '24/7', detail: 'Your digital storefront', sideLabel: 'DESIGNED FOR', sideValue: 'LEADS', sideDetail: 'Clear calls to action', chart: 'VISITOR JOURNEY / ILLUSTRATION', event: 'Inquiry form ready', desc: 'Visit → trust → contact', bars: [29,40,33,55,52,64,68,75,83,92] },
+      auto: { title: 'Follow-up that never sleeps', icon: '⚡', label: 'AVAILABILITY', value: '24/7', detail: 'Automated workflows', sideLabel: 'RESPONSE', sideValue: 'FAST', sideDetail: 'Route leads automatically', chart: 'WORKFLOW ACTIVITY / ILLUSTRATION', event: 'Lead follow-up triggered', desc: 'Inquiry → message → booking', bars: [40,46,54,49,67,60,77,72,88,96] }
+    };
+    const tabs = [...document.querySelectorAll('.pdm-tab')];
+    const bars = [...document.querySelectorAll('#pdm-bars span')];
+    function selectMode(name, focus) {
+      const data = modes[name];
+      if (!data) return;
+      tabs.forEach(tab => {
+        const active = tab.dataset.mode === name;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+        if (active && focus) tab.focus();
+      });
+      byId('pdm-panel').setAttribute('aria-labelledby', 'pdm-tab-' + name);
+      const fields = {
+        'pdm-panel-heading': data.title, 'pdm-panel-icon': data.icon,
+        'pdm-metric-label': data.label, 'pdm-metric-value': data.value,
+        'pdm-metric-detail': data.detail, 'pdm-side-label': data.sideLabel,
+        'pdm-side-value': data.sideValue, 'pdm-side-detail': data.sideDetail,
+        'pdm-chart-label': data.chart, 'pdm-event-title': data.event,
+        'pdm-event-desc': data.desc
+      };
+      Object.entries(fields).forEach(([id, value]) => { const el = byId(id); if (el) el.textContent = value; });
+      bars.forEach((bar, i) => bar.style.setProperty('--h', data.bars[i] + '%'));
     }
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => selectMode(tab.dataset.mode, false));
+      tab.addEventListener('keydown', event => {
+        if (!['ArrowRight','ArrowLeft','Home','End'].includes(event.key)) return;
+        event.preventDefault();
+        let next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (i + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+        selectMode(tabs[next].dataset.mode, true);
+      });
+    });
+    const steps = [
+      ['STEP 01 / ATTRACT','Get in front of buyers, not browsers.','Targeted Meta and Google campaigns reach people who are most likely to need your service.'],
+      ['STEP 02 / CONVERT','Give every visitor a clear next step.','Fast, focused landing pages explain your offer and make contacting you simple.'],
+      ['STEP 03 / FOLLOW UP','Keep leads moving automatically.','Connected messaging and lead-routing workflows help your team respond without unnecessary delays.'],
+      ['STEP 04 / BOOK','Turn conversations into opportunities.','A frictionless booking process helps qualified prospects take the next step with your business.']
+    ];
+    document.querySelectorAll('.pdm-funnel-step').forEach(button => {
+      button.addEventListener('click', () => {
+        const index = Number(button.dataset.step);
+        const data = steps[index];
+        if (!data) return;
+        document.querySelectorAll('.pdm-funnel-step').forEach(el => {
+          const selected = el === button;
+          el.classList.toggle('is-selected', selected);
+          el.setAttribute('aria-pressed', String(selected));
+        });
+        byId('pdm-detail-tag').textContent = data[0];
+        byId('pdm-detail-title').textContent = data[1];
+        byId('pdm-detail-copy').textContent = data[2];
+      });
+    });
+    // 3D mouse tracking: noticeable but restrained. Disabled for touch/reduced motion.
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const finePointer = window.matchMedia('(pointer: fine)');
+    let frame = 0, targetX = -5, targetY = -9, x = -5, y = -9;
+    function tick() {
+      frame = 0;
+      x += (targetX - x) * .2;
+      y += (targetY - y) * .2;
+      dashboard.style.setProperty('--rx', x.toFixed(2) + 'deg');
+      dashboard.style.setProperty('--ry', y.toFixed(2) + 'deg');
+      if (Math.abs(targetX - x) > .03 || Math.abs(targetY - y) > .03) frame = requestAnimationFrame(tick);
+    }
+    function move(event) {
+      if (motion.matches || !finePointer.matches || window.innerWidth <= 640) return;
+      const r = stage.getBoundingClientRect();
+      const nx = Math.max(-1, Math.min(1, (event.clientX - r.left) / r.width * 2 - 1));
+      const ny = Math.max(-1, Math.min(1, (event.clientY - r.top) / r.height * 2 - 1));
+      targetX = -ny * 12;
+      targetY = nx * 15;
+      if (!frame) frame = requestAnimationFrame(tick);
+    }
+    function reset() { targetX = -5; targetY = -9; if (!frame) frame = requestAnimationFrame(tick); }
+    stage.addEventListener('pointermove', move, { passive: true });
+    stage.addEventListener('pointerleave', reset);
+    if (motion.matches || !finePointer.matches) { targetX = 0; targetY = 0; reset(); }
+    console.info('PDM interactive growth dashboard ready.');
   }
-
-  const visibilityObserver = new IntersectionObserver(
-    entries => {
-      setActive(
-        entries[0].isIntersecting &&
-        !document.hidden
-      );
-    },
-    { threshold: 0 }
-  );
-
-  visibilityObserver.observe(container);
-
-  document.addEventListener("visibilitychange", () => {
-    setActive(
-      !document.hidden &&
-      container.getBoundingClientRect().bottom > 0 &&
-      container.getBoundingClientRect().top < window.innerHeight
-    );
-  });
-
-  animate();
-
-  console.log("Precision Digital Marketing 3D hero loaded.");
-});
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
