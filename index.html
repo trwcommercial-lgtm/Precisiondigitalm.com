@@ -55,6 +55,10 @@ h2.eyebrow > span{white-space:nowrap}
 .map-wrap iframe{display:block;width:100%;height:380px;border:0;filter:invert(.92) hue-rotate(180deg) saturate(.55) brightness(.95)}
 .map-nap{margin-top:18px;font-size:17px;line-height:1.7;color:var(--grey-l)}
 .map-nap a{color:inherit}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;margin:44px 0 28px}
+.rev-grid .rev-card{grid-column:auto;margin:0;padding:34px 32px}
+.rev-grid .rev-card .res-meta b{color:var(--red-br);letter-spacing:3px}
+.rev-grid .rev-card blockquote{margin:0;font-size:18px;line-height:1.7;color:var(--grey-l)}
 .con{max-width:1280px;margin:0 auto;padding:0 var(--gut);position:relative;z-index:2}
 
 /* ---------- background layers ---------- */
@@ -657,16 +661,36 @@ input[type=range]:active::-webkit-slider-thumb{box-shadow:0 0 0 10px rgba(255,75
   </div>
 </section>
 
-<!-- REVIEWS: fill in real Google reviews (exact text, first name, town), then delete this comment line and the two marker lines to publish.
+<!-- REVIEWS -->
 <section class="sec" id="reviews" data-scene="wave" aria-labelledby="reviews-title">
   <div class="con">
-    <h2 class="eyebrow reveal" id="reviews-title">What Schaumburg Business Owners Say</h2>
-    <blockquote class="lede reveal d1">"[exact review text naming the service and town]"<br><cite>[First name, Town], Google review</cite></blockquote>
-    <blockquote class="lede reveal d1">"[exact review text]"<br><cite>[First name, Town], Google review</cite></blockquote>
-    <blockquote class="lede reveal d1">"[exact review text]"<br><cite>[First name, Town], Google review</cite></blockquote>
+    <h2 class="eyebrow reveal" id="reviews-title">Google Reviews for Precision Digital Marketing</h2>
+    <p class="hd h2 reveal d1" id="reviews-tag">Five stars.<br><span class="r">Every one.</span></p>
+    <div class="rev-grid">
+      <figure class="res-card rev-card reveal">
+        <div class="res-meta"><span>Joseph N. / Google review</span><b aria-label="5 out of 5 stars">★★★★★</b></div>
+        <blockquote>Aamir and PDM helped me change my angle for my AI agencies marketing strategy. At the very beginning of the AI Boom I was telling myself “oh I’ll just sell to everyone”, but Aamir showed me how to create a precise marketing strategy and since we started him long ago my sales and leads have exploded. Allowing me to hire AI specialists to expand my brand and company faster than I could’ve imagined. I will be using Aamir’s services for a very long time.</blockquote>
+      </figure>
+      <figure class="res-card rev-card reveal">
+        <div class="res-meta"><span>Brion N. / Google review</span><b aria-label="5 out of 5 stars">★★★★★</b></div>
+        <blockquote>The real deal. Not only did he take the initiative and dedication to answer all my questions and check all the boxes for my marketing ideas, but he also improved upon them and showed me firsthand how digital marketing should be at the forefront due to how tailored it is for the individual. Can't recommend Precision Digital Marketing enough!! Aamir is the best!</blockquote>
+      </figure>
+      <figure class="res-card rev-card reveal">
+        <div class="res-meta"><span>Ethan / Google review</span><b aria-label="5 out of 5 stars">★★★★★</b></div>
+        <blockquote>Helped me so much. Not only am i getting more leads they are also higher quality. Seen my ROI booming and my money making me more money. Aamir is the one stop shop for meta and google ads</blockquote>
+      </figure>
+      <figure class="res-card rev-card reveal">
+        <div class="res-meta"><span>Brandon C. / Google review</span><b aria-label="5 out of 5 stars">★★★★★</b></div>
+        <blockquote>I had the pleasure of working with Aamir on a recent digital marketing project, and I was thoroughly impressed with his professionalism and results-driven approach. From the very beginning, he demonstrated a deep understanding of digital marketing strategies. paid ads to content marketing and social media engagement. precision marketing is the way to go for all your Marketing needs. Thank you again I definitely will be working with you again soon.</blockquote>
+      </figure>
+      <figure class="res-card rev-card reveal">
+        <div class="res-meta"><span>Myra A. / Google review</span><b aria-label="5 out of 5 stars">★★★★★</b></div>
+        <blockquote>Great to work with. Knew exactly what my vision was and made it happen. Thank you</blockquote>
+      </figure>
+    </div>
+    <div class="disclaim reveal"><span>Reviews shown as written on our Google Business Profile.</span><a href="https://maps.google.com/?cid=7571473762485671484" target="_blank" rel="noopener">Read all reviews on Google ↗</a></div>
   </div>
 </section>
-END REVIEWS -->
 
 <!-- FINALE -->
 <section class="sec finale" id="contact-audit" data-scene="knot" aria-labelledby="final-title">
