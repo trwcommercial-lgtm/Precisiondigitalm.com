@@ -48,10 +48,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .skip{position:fixed;left:16px;top:-60px;z-index:300;background:var(--red-br);padding:10px 16px;font-family:var(--sub);font-weight:800;letter-spacing:2px;text-transform:uppercase;transition:top .2s}
 .skip:focus{top:12px}
 h1,h2,h3,.hd{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9}
-h2.eyebrow{font-family:var(--mono);line-height:1.5;flex-wrap:wrap}
+h2.eyebrow{font-family:var(--mono);line-height:1.65}
+h2.eyebrow > span{white-space:nowrap}
 .ov-h1{font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit;line-height:inherit;margin:0}
 .map-wrap{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.12);margin-top:8px}
-.map-wrap iframe{display:block;width:100%;height:380px;border:0}
+.map-wrap iframe{display:block;width:100%;height:380px;border:0;filter:invert(.92) hue-rotate(180deg) saturate(.55) brightness(.95)}
 .map-nap{margin-top:18px;font-size:17px;line-height:1.7;color:var(--grey-l)}
 .map-nap a{color:inherit}
 .con{max-width:1280px;margin:0 auto;padding:0 var(--gut);position:relative;z-index:2}
@@ -323,6 +324,7 @@ input[type=range]:active::-webkit-slider-thumb{box-shadow:0 0 0 10px rgba(255,75
 .finale .final-title{font-size:clamp(84px,14vw,230px);line-height:.82;margin-bottom:34px}
 .finale .final-title em{font-style:normal;color:transparent;-webkit-text-stroke:2px var(--red-br)}
 .finale p{font-size:20px;color:var(--grey-l);max-width:620px;margin:0 auto 44px}
+.finale p.final-title{color:#fff;max-width:none;font-size:clamp(84px,14vw,230px);margin:0 auto 34px}
 .finale .btn{padding:22px 42px;font-size:16px}
 .finale-meta{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-top:44px;font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--grey);text-transform:uppercase}
 .finale-meta a:hover{color:#fff}
@@ -471,7 +473,7 @@ input[type=range]:active::-webkit-slider-thumb{box-shadow:0 0 0 10px rgba(255,75
     <div class="con" style="width:100%">
       <div class="machine-grid">
         <div class="machine-head">
-          <h2 class="eyebrow" id="machine-title">Google Ads, Meta Ads and Websites That Work Together <span aria-hidden="true">/ 001</span></h2>
+          <h2 class="eyebrow" id="machine-title">Google Ads, Meta Ads and Websites <span aria-hidden="true">/ 001</span></h2>
           <p class="hd h2" id="machine-tag">Attention.<br><span class="r">Action.</span> <em>Customers.</em></p>
           <div class="m-steps" role="tablist" aria-label="Growth machine stages">
             <button class="m-step on" data-stage="0" role="tab" aria-selected="true"><span class="n">01</span><strong>Make them look.</strong><small>Google and Meta Ads aimed at people likely to buy, not people likely to click.</small></button>
@@ -499,7 +501,7 @@ input[type=range]:active::-webkit-slider-thumb{box-shadow:0 0 0 10px rgba(255,75
 <section class="sec" id="results" aria-labelledby="results-title" style="padding-bottom:60px">
   <div class="con">
     <div class="split" data-scene="core-dim">
-      <div><h2 class="eyebrow reveal" id="results-title">Client Results from Schaumburg to Turks and Caicos <span aria-hidden="true">/ 002</span></h2><p class="hd h2 reveal d1" id="results-tag">Results that<br><span class="r">matter.</span></p></div>
+      <div><h2 class="eyebrow reveal" id="results-title">Marketing Agency Client Results <span aria-hidden="true">/ 002</span></h2><p class="hd h2 reveal d1" id="results-tag">Results that<br><span class="r">matter.</span></p></div>
       <p class="lede reveal d2">Clicks and impressions don't pay your bills. We judge every campaign by customers acquired, conversion quality, and what happens after the click. The same playbook we run for local businesses has proven itself in competitive markets far from home.</p>
     </div>
     <div class="res-row" data-scene="num34">
@@ -528,7 +530,7 @@ input[type=range]:active::-webkit-slider-thumb{box-shadow:0 0 0 10px rgba(255,75
 <section class="sec" id="leak" data-scene="drain" aria-labelledby="leak-title">
   <div class="con">
     <div class="split">
-      <div><h2 class="eyebrow reveal" id="leak-title">Free Ad Budget Calculator for Local Businesses <span aria-hidden="true">/ 003</span></h2><p class="hd h2 reveal d1" id="leak-tag">What is your<br>funnel <span class="r">leaking?</span></p></div>
+      <div><h2 class="eyebrow reveal" id="leak-title">Free Ad Budget Calculator <span aria-hidden="true">/ 003</span></h2><p class="hd h2 reveal d1" id="leak-tag">What is your<br>funnel <span class="r">leaking?</span></p></div>
       <p class="lede reveal d2">Pick your industry and your monthly budget. See what the average business gets running ads on its own, and what a tuned system can do with the same money.</p>
     </div>
     <div class="calc reveal" id="calc">
@@ -553,7 +555,7 @@ input[type=range]:active::-webkit-slider-thumb{box-shadow:0 0 0 10px rgba(255,75
 <section class="sec" id="services" data-scene="network" aria-labelledby="svc-title">
   <div class="con">
     <div class="split">
-      <div><h2 class="eyebrow reveal" id="svc-title">Local SEO, Paid Ads, Landing Pages and Booking Systems <span aria-hidden="true">/ 004</span></h2><p class="hd h2 reveal d1" id="svc-tag">Every piece.<br><span class="r">Connected.</span></p></div>
+      <div><h2 class="eyebrow reveal" id="svc-title">Local SEO, Ads, Pages and Booking <span aria-hidden="true">/ 004</span></h2><p class="hd h2 reveal d1" id="svc-tag">Every piece.<br><span class="r">Connected.</span></p></div>
       <p class="lede reveal d2">One customer acquisition system instead of three vendors who never talk. Ads feed the site, the site feeds the follow-up, and every lead is tracked to revenue.</p>
     </div>
     <div class="svc reveal">
@@ -598,7 +600,7 @@ input[type=range]:active::-webkit-slider-thumb{box-shadow:0 0 0 10px rgba(255,75
 <section class="sec" id="why" data-scene="wave" aria-labelledby="seo-title">
   <div class="con seo">
     <div>
-      <h2 class="eyebrow reveal" id="seo-title">Conversion Rate Optimization for Google and Meta Ads <span aria-hidden="true">/ 005</span></h2>
+      <h2 class="eyebrow reveal" id="seo-title">Conversion Rate Optimization <span aria-hidden="true">/ 005</span></h2>
       <p class="hd h2 reveal d1" id="seo-tag" style="font-size:clamp(46px,5.6vw,84px)">Your ads aren't the whole problem. <span class="r">Your conversion path might be.</span></p>
       <div class="leaks reveal d2">
         <div class="leak"><i>01</i>Confusing website</div>
@@ -619,7 +621,7 @@ input[type=range]:active::-webkit-slider-thumb{box-shadow:0 0 0 10px rgba(255,75
 <section class="sec" id="process" data-scene="wave" aria-labelledby="proc-title" style="padding-top:60px">
   <div class="con">
     <div class="split">
-      <div><h2 class="eyebrow reveal" id="proc-title">How Our Marketing Agency Works: Audit, Build, Launch, Scale <span aria-hidden="true">/ 006</span></h2><p class="hd h2 reveal d1" id="proc-tag">Four moves.<br><span class="r">Zero guesswork.</span></p></div>
+      <div><h2 class="eyebrow reveal" id="proc-title">How Our Marketing Agency Works <span aria-hidden="true">/ 006</span></h2><p class="hd h2 reveal d1" id="proc-tag">Four moves.<br><span class="r">Zero guesswork.</span></p></div>
       <p class="lede reveal d2">A clear path from first call to a system that books customers while you work.</p>
     </div>
     <div class="proc" id="proc">
@@ -635,7 +637,7 @@ input[type=range]:active::-webkit-slider-thumb{box-shadow:0 0 0 10px rgba(255,75
 <!-- FAQ -->
 <section class="sec" id="faq" data-scene="wave" aria-labelledby="faq-title">
   <div class="con faq-grid">
-    <div><h2 class="eyebrow reveal" id="faq-title">Digital Marketing FAQ for Schaumburg Business Owners <span aria-hidden="true">/ 007</span></h2><p class="hd h2 reveal d1" id="faq-tag">Questions<br><span class="r">answered.</span></p></div>
+    <div><h2 class="eyebrow reveal" id="faq-title">Schaumburg Marketing FAQ <span aria-hidden="true">/ 007</span></h2><p class="hd h2 reveal d1" id="faq-tag">Questions<br><span class="r">answered.</span></p></div>
     <div class="faq reveal d2">
       <details open><summary>How fast can a campaign start producing results? <i></i></summary><div class="ans">Well-built campaigns can start generating inquiries within days of launch. One of our Jamaica hospitality campaigns produced 51 inquiries in under 24 hours. Steady, profitable customer acquisition usually takes a few weeks of testing and optimization.</div></details>
       <details><summary>Do you only work with businesses in Schaumburg? <i></i></summary><div class="ans">No. We are based in Schaumburg, Illinois and serve businesses across the Chicago suburbs, plus hospitality brands well beyond, including clients in Turks and Caicos and Jamaica.</div></details>
@@ -669,7 +671,7 @@ END REVIEWS -->
 <!-- FINALE -->
 <section class="sec finale" id="contact-audit" data-scene="knot" aria-labelledby="final-title">
   <div class="con">
-    <h2 class="eyebrow reveal" id="final-title" style="justify-content:center">Book a Free Marketing Audit in Schaumburg <span aria-hidden="true">/ 008</span></h2>
+    <h2 class="eyebrow reveal" id="final-title" style="justify-content:center">Free Marketing Audit in Schaumburg <span aria-hidden="true">/ 008</span></h2>
     <p class="hd final-title reveal d1" id="final-tag">Stop paying<br>for <em>empty</em> clicks.</p>
     <p class="reveal d2">Let's find where your advertising budget is leaking and turn more of the traffic you already pay for into paying customers. Book a free consultation.</p>
     <div class="reveal d3"><a class="btn btn-r magnet" href="https://calendly.com/trwcommercial/marketing-consultation" target="_blank" rel="noopener">Book my free consultation <span class="arr">↗</span></a></div>
