@@ -578,7 +578,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
 <script>
 (function(){
   /* Sophia's lead inbox: paste her Railway address here, e.g. 'https://sophia-production.up.railway.app/lead' */
-  var SOPHIA_LEAD_URL='';
+  var SOPHIA_LEAD_URL='https://sophia-production-e70f.up.railway.app/lead';
   var body=document.body,reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches,isTouch=window.matchMedia('(hover: none)').matches;
   requestAnimationFrame(function(){setTimeout(function(){body.classList.add('loaded');},60);});
   var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
