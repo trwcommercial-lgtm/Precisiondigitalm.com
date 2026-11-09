@@ -429,7 +429,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
 (function(){
   /* Count the Google Ads conversion only after a real form submit, once. A direct visit to this page counts nothing. */
   var sent=null,name='';
-  try{sent=sessionStorage.getItem('pdm_lead_sent');name=sessionStorage.getItem('pdm_lead_name')||'';sessionStorage.removeItem('pdm_lead_sent');}catch(e){}
+  try{sent=sessionStorage.getItem('pdm_lead_sent');name=sessionStorage.getItem('pdm_lead_name')||'';sessionStorage.removeItem('pdm_lead_sent');sessionStorage.removeItem('pdm_lead_name');}catch(e){}
   if(name)document.getElementById('who').textContent=name;
   var c=window.PDM_ADS||{};
   if(sent==='1'&&c.id&&c.lead&&window.gtag){gtag('event','conversion',{send_to:c.id+'/'+c.lead});}
