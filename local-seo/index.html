@@ -17,7 +17,8 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "serviceType": "Local SEO", "provider": {"@type": "LocalBusiness", "name": "Precision Digital Marketing", "url": "https://www.precisiondigitalm.com", "telephone": "6302461901"}, "areaServed": "Chicago northwest suburbs, IL"}</script>
 <!-- GOOGLE ADS: paste the Google tag ID (AW-...) into id, and the lead conversion label into lead.
      The tag loads on this page and the thank-you page; the conversion counts only on the thank-you page after a real form submit. -->
-<script>window.PDM_ADS={id:'',lead:''};(function(c){if(!c.id)return;var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id='+c.id;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag('js',new Date());gtag('config',c.id);})(window.PDM_ADS);</script>
+<!-- Google Ads tag (PDM, account 576-884-2494): lead form + website call tracking -->
+<script>window.PDM_ADS={id:'AW-18567733535',lead:'R7YeCOuc6rUdEJ_C5JVF',call:'aisLCPGc6rUdEJ_C5JVF',phone:'(630) 246-1901'};(function(c){if(!c.id)return;var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id='+c.id;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag('js',new Date());gtag('config',c.id,{allow_enhanced_conversions:true});if(c.call)gtag('config',c.id+'/'+c.call,{phone_conversion_number:c.phone});})(window.PDM_ADS);</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -608,7 +609,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
     var sends=[fetch(form.action,{method:'POST',body:fd,headers:{'Accept':'application/json'}}).then(ok)];
     if(SOPHIA_LEAD_URL)sends.push(fetch(SOPHIA_LEAD_URL,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'application/json'},keepalive:true}).then(ok));
     var left=sends.length,done=false;
-    function win(){if(done)return;done=true;try{sessionStorage.setItem('pdm_lead_sent','1');sessionStorage.setItem('pdm_lead_name',(data.name||'').trim().split(' ')[0]);}catch(x){}location.href='/local-seo/thanks/';}
+    function win(){if(done)return;done=true;try{sessionStorage.setItem('pdm_lead_sent','1');sessionStorage.setItem('pdm_lead_name',(data.name||'').trim().split(' ')[0]);sessionStorage.setItem('pdm_lead_ec',JSON.stringify({e:(data.email||'').trim().toLowerCase(),p:(data.phone||'').replace(/\D/g,'')}));}catch(x){}location.href='/local-seo/thanks/';}
     function lose(){if(--left>0||done)return;btn.disabled=false;btn.firstChild.textContent='Try again ';alert('Something went wrong sending your request. Please call or text (630) 246-1901.');}
     sends.forEach(function(p){p.then(win,lose);});
   });

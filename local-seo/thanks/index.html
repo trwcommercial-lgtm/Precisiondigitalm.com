@@ -9,7 +9,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2304080f'/%3E%3Ccircle cx='32' cy='32' r='14' fill='none' stroke='%23ff4b3a' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23ffffff'/%3E%3C/svg%3E">
 <!-- GOOGLE ADS: paste the Google tag ID (AW-...) into id, and the lead conversion label into lead.
      The tag loads on this page and the thank-you page; the conversion counts only on the thank-you page after a real form submit. -->
-<script>window.PDM_ADS={id:'',lead:''};(function(c){if(!c.id)return;var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id='+c.id;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag('js',new Date());gtag('config',c.id);})(window.PDM_ADS);</script>
+<!-- Google Ads tag (PDM, account 576-884-2494): lead form + website call tracking -->
+<script>window.PDM_ADS={id:'AW-18567733535',lead:'R7YeCOuc6rUdEJ_C5JVF',call:'aisLCPGc6rUdEJ_C5JVF',phone:'(630) 246-1901'};(function(c){if(!c.id)return;var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id='+c.id;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag('js',new Date());gtag('config',c.id,{allow_enhanced_conversions:true});if(c.call)gtag('config',c.id+'/'+c.call,{phone_conversion_number:c.phone});})(window.PDM_ADS);</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -428,11 +429,16 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
 <script>
 (function(){
   /* Count the Google Ads conversion only after a real form submit, once. A direct visit to this page counts nothing. */
-  var sent=null,name='';
-  try{sent=sessionStorage.getItem('pdm_lead_sent');name=sessionStorage.getItem('pdm_lead_name')||'';sessionStorage.removeItem('pdm_lead_sent');sessionStorage.removeItem('pdm_lead_name');}catch(e){}
+  var sent=null,name='',ec=null;
+  try{sent=sessionStorage.getItem('pdm_lead_sent');name=sessionStorage.getItem('pdm_lead_name')||'';ec=JSON.parse(sessionStorage.getItem('pdm_lead_ec')||'null');}catch(e){}
+  try{sessionStorage.removeItem('pdm_lead_sent');sessionStorage.removeItem('pdm_lead_name');sessionStorage.removeItem('pdm_lead_ec');}catch(e){}
   if(name)document.getElementById('who').textContent=name;
   var c=window.PDM_ADS||{};
-  if(sent==='1'&&c.id&&c.lead&&window.gtag){gtag('event','conversion',{send_to:c.id+'/'+c.lead});}
+  if(sent==='1'&&c.id&&c.lead&&window.gtag){
+    /* Enhanced conversions: Google's tag hashes these before sending. Phone in E.164 (US). */
+    if(ec&&(ec.e||ec.p)){var u={};if(ec.e)u.email=ec.e;if(ec.p)u.phone_number='+'+(ec.p.length===10?'1'+ec.p:ec.p);gtag('set','user_data',u);}
+    gtag('event','conversion',{send_to:c.id+'/'+c.lead,value:360,currency:'USD'});
+  }
 })();
 </script>
 </body>
