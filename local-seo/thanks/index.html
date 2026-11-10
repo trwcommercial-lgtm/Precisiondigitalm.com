@@ -402,6 +402,11 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
 .ty li:last-child{border-bottom:0}
 .ty li b{font-family:var(--h);font-weight:400;font-size:26px;color:var(--red-br);line-height:1}
 .ty .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.book{margin:56px 0 24px;max-width:760px}
+.book h2{font-family:var(--sub);font-weight:900;font-size:clamp(26px,4vw,38px);letter-spacing:.5px;text-transform:uppercase;margin:0 0 8px}
+.book p{color:var(--grey-l);font-size:17px;margin:0 0 18px}
+.book iframe{display:block;width:100%;height:720px;border:1px solid var(--line-2);background:#070f1c}
+@media (max-width:640px){.book iframe{height:820px}}
 </style>
 </head>
 <body class="loaded">
@@ -418,12 +423,17 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
   <ol>
     <li><b>1</b><span>I check your Google Business Profile against five points and see where you rank today.</span></li>
     <li><b>2</b><span>You hear from me the same business day with what I found.</span></li>
-    <li><b>3</b><span>If I can move you up, we talk numbers on a 20-minute call. If I can't, I'll tell you, and you keep the audit.</span></li>
+    <li><b>3</b><span>If I can move you up, we talk numbers on a quick call. If I can't, I'll tell you, and you keep the audit.</span></li>
   </ol>
   <div class="btns">
     <a class="btn btn-r" href="https://calendly.com/trwcommercial/marketing-consultation" target="_blank" rel="noopener">Skip the wait, book a call <span class="arr">↗</span></a>
     <a class="btn btn-o" href="tel:6302461901">Call (630) 246-1901</a>
   </div>
+  <section class="book" aria-labelledby="book-h">
+    <h2 id="book-h">Book your call now.</h2>
+    <p>I'll bring your map rank, block by block. You decide after.</p>
+    <iframe id="cal" title="Book a call with Aamir" loading="lazy" src="https://calendly.com/trwcommercial/marketing-consultation?embed_type=Inline&amp;hide_gdpr_banner=1&amp;hide_event_type_details=1&amp;background_color=070f1c&amp;text_color=ffffff&amp;primary_color=ff4b3a"></iframe>
+  </section>
 </div></main>
 <footer class="lp-foot"><div class="con in"><span>© 2026 Precision Digital Marketing · 80 S Lincoln Meadows Dr, Suite 1624, Schaumburg, IL 60173</span><span><a href="/">Main site</a> · <a href="/privacy/">Privacy policy</a></span></div></footer>
 <script>
@@ -433,6 +443,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
   try{sent=sessionStorage.getItem('pdm_lead_sent');name=sessionStorage.getItem('pdm_lead_name')||'';ec=JSON.parse(sessionStorage.getItem('pdm_lead_ec')||'null');}catch(e){}
   try{sessionStorage.removeItem('pdm_lead_sent');sessionStorage.removeItem('pdm_lead_name');sessionStorage.removeItem('pdm_lead_ec');}catch(e){}
   if(name)document.getElementById('who').textContent=name;
+  if(name){var cal=document.getElementById('cal');if(cal)cal.src+='&name='+encodeURIComponent(name);}
   var c=window.PDM_ADS||{};
   if(sent==='1'&&c.id&&c.lead&&window.gtag){
     /* Enhanced conversions: Google's tag hashes these before sending. Phone in E.164 (US). */
