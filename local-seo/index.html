@@ -17,8 +17,8 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "serviceType": "Local SEO", "provider": {"@type": "LocalBusiness", "name": "Precision Digital Marketing", "url": "https://www.precisiondigitalm.com", "telephone": "6302461901"}, "areaServed": "Chicago northwest suburbs, IL"}</script>
 <!-- GOOGLE ADS: paste the Google tag ID (AW-...) into id, and the lead conversion label into lead.
      The tag loads on this page and the thank-you page; the conversion counts only on the thank-you page after a real form submit. -->
-<!-- Google Ads tag (PDM, account 576-884-2494): lead form + website call tracking -->
-<script>window.PDM_ADS={id:'AW-18567733535',lead:'R7YeCOuc6rUdEJ_C5JVF',call:'aisLCPGc6rUdEJ_C5JVF',phone:'(630) 246-1901'};(function(c){if(!c.id)return;var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id='+c.id;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag('js',new Date());gtag('config',c.id,{allow_enhanced_conversions:true});if(c.call)gtag('config',c.id+'/'+c.call,{phone_conversion_number:c.phone});})(window.PDM_ADS);</script>
+<!-- Google Ads tag (PDM, account 576-884-2494): lead form tracking. Call tracking off on purpose: Google forwarding numbers can't receive texts. -->
+<script>window.PDM_ADS={id:'AW-18567733535',lead:'R7YeCOuc6rUdEJ_C5JVF',call:'',phone:'(630) 246-1901'};(function(c){if(!c.id)return;var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id='+c.id;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag('js',new Date());gtag('config',c.id,{allow_enhanced_conversions:true});if(c.call)gtag('config',c.id+'/'+c.call,{phone_conversion_number:c.phone});})(window.PDM_ADS);</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -407,7 +407,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
 <header class="lp-top">
   <div class="in">
     <a class="logo" href="/" aria-label="Precision Digital Marketing home"><span class="logo-mark" aria-hidden="true"></span><b style="font-weight:900">PRECISION <span>DIGITAL</span> MARKETING</b></a>
-    <a class="lp-call" href="tel:6302461901" aria-label="Call (630) 246-1901"><i aria-hidden="true"></i><span>(630) 246-1901</span></a>
+    <a class="lp-call" href="sms:6302461901" aria-label="Text (630) 246-1901"><i aria-hidden="true"></i><span>Text (630) 246-1901</span></a>
   </div>
 </header>
 
@@ -565,21 +565,17 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
 <section class="final" aria-labelledby="fin-t">
   <div class="con">
     <div class="eyebrow reveal" style="justify-content:center">Free, no obligation</div>
-    <h2 class="reveal d1" id="fin-t">Google me.<br>Then <em>call</em> me.</h2>
+    <h2 class="reveal d1" id="fin-t">Google me.<br>Then <em>hire</em> me.</h2>
     <p class="reveal d2">Tell me your business and city. I'll audit your Google profile and show you exactly what it takes to move up.</p>
     <div class="reveal d3"><a class="btn btn-r magnet" href="#start">Get my free audit <span class="arr">↑</span></a></div>
-    <div class="meta reveal d3"><a href="tel:6302461901">(630) 246-1901</a><a href="mailto:Aamir@precisiondigitalm.com">Aamir@precisiondigitalm.com</a><span>80 S Lincoln Meadows Dr, Suite 1624, Schaumburg</span></div>
+    <div class="meta reveal d3"><a href="sms:6302461901">Text (630) 246-1901</a><a href="mailto:Aamir@precisiondigitalm.com">Aamir@precisiondigitalm.com</a><span>80 S Lincoln Meadows Dr, Suite 1624, Schaumburg</span></div>
   </div>
 </section>
 </main>
 
 <footer class="lp-foot"><div class="con in"><span>© 2026 Precision Digital Marketing · 80 S Lincoln Meadows Dr, Suite 1624, Schaumburg, IL 60173</span><span><a href="/">Main site</a> · <a href="/privacy/">Privacy policy</a></span></div></footer>
 
-<div class="sticky" id="sticky"><a class="btn btn-r" href="#start">Free audit <span class="arr">→</span></a><a class="btn btn-o call" id="stickyCall" href="tel:6302461901" aria-label="Call (630) 246-1901">Call</a></div>
-<script>
-/* Mon-Thu 10:30am-7pm Chicago Aamir is on shift and can text but not take calls: offer Text instead of Call. */
-(function(){try{var p=new Intl.DateTimeFormat("en-US",{timeZone:"America/Chicago",weekday:"short",hour:"numeric",minute:"numeric",hour12:false}).formatToParts(new Date()),g=function(k){return(p.find(function(x){return x.type===k})||{}).value};var d=g("weekday"),m=(+g("hour")%24)*60+(+g("minute"));if(["Mon","Tue","Wed","Thu"].indexOf(d)>-1&&m>=630&&m<1140){var a=document.getElementById("stickyCall");a.href="sms:6302461901";a.textContent="Text";a.setAttribute("aria-label","Text (630) 246-1901");}}catch(e){}})();
-</script>
+<div class="sticky" id="sticky"><a class="btn btn-r" href="#start">Free audit <span class="arr">→</span></a><a class="btn btn-o call" id="stickyCall" href="sms:6302461901" aria-label="Text (630) 246-1901">Text</a></div>
 <script>
 (function(){
   /* Sophia's lead inbox: paste her Railway address here, e.g. 'https://sophia-production.up.railway.app/lead' */
@@ -614,7 +610,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
     if(SOPHIA_LEAD_URL)sends.push(fetch(SOPHIA_LEAD_URL,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'application/json'},keepalive:true}).then(ok));
     var left=sends.length,done=false;
     function win(){if(done)return;done=true;try{sessionStorage.setItem('pdm_lead_sent','1');sessionStorage.setItem('pdm_lead_name',(data.name||'').trim().split(' ')[0]);sessionStorage.setItem('pdm_lead_ec',JSON.stringify({e:(data.email||'').trim().toLowerCase(),p:(data.phone||'').replace(/\D/g,'')}));}catch(x){}location.href='/local-seo/thanks/';}
-    function lose(){if(--left>0||done)return;btn.disabled=false;btn.firstChild.textContent='Try again ';alert('Something went wrong sending your request. Please call or text (630) 246-1901.');}
+    function lose(){if(--left>0||done)return;btn.disabled=false;btn.firstChild.textContent='Try again ';alert('Something went wrong sending your request. Please text (630) 246-1901 or email Aamir@precisiondigitalm.com.');}
     sends.forEach(function(p){p.then(win,lose);});
   });
 
