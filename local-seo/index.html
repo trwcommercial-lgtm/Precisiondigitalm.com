@@ -423,7 +423,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
         <li>I pick and research your keyword. You don't need to know anything about SEO.</li>
         <li>You deal with me directly, from my office in Schaumburg.</li>
       </ul>
-      <div class="hero-proof hfade f4"><a class="btn btn-o" href="https://www.google.com/search?q=who+is+the+hardest+working+marketer+in+Schaumburg" target="_blank" rel="noopener">Don't believe me? Search it <span class="arr">↗</span></a></div>
+      <div class="hero-proof hfade f4" style="display:flex;flex-wrap:wrap;gap:10px"><a class="btn btn-r" href="#start">Get my free audit <span class="arr">↓</span></a><a class="btn btn-o" href="https://www.google.com/search?q=who+is+the+hardest+working+marketer+in+Schaumburg" target="_blank" rel="noopener">Don't believe me? Search it <span class="arr">↗</span></a></div>
     </div>
     <div class="lp-pack">
       <div class="serp hfade f4" id="serp">
@@ -457,7 +457,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
         <input type="hidden" name="source" value="local-seo landing page">
         <input type="hidden" name="gclid" id="hGclid"><input type="hidden" name="utm_source" id="hSrc"><input type="hidden" name="utm_campaign" id="hCamp"><input type="hidden" name="utm_term" id="hTerm">
         <button class="btn btn-r submit" type="submit" id="fSubmit">Audit my profile <span class="arr">→</span></button>
-        <p class="fine">Free, no obligation. You'll hear from me the same business day. <a href="/privacy/">Privacy policy</a></p>
+        <p class="fine">Free, no obligation. I text you back within the hour, 8am to 8pm. <a href="/privacy/">Privacy policy</a></p>
         <a class="alt" href="https://calendly.com/trwcommercial/marketing-consultation" target="_blank" rel="noopener">Or book a 20-minute call now ↗</a>
       </form>
     </div>
@@ -575,7 +575,11 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
 
 <footer class="lp-foot"><div class="con in"><span>© 2026 Precision Digital Marketing · 80 S Lincoln Meadows Dr, Suite 1624, Schaumburg, IL 60173</span><span><a href="/">Main site</a> · <a href="/privacy/">Privacy policy</a></span></div></footer>
 
-<div class="sticky" id="sticky"><a class="btn btn-r" href="#start">Free audit <span class="arr">↑</span></a><a class="btn btn-o call" href="tel:6302461901" aria-label="Call (630) 246-1901">Call</a></div>
+<div class="sticky" id="sticky"><a class="btn btn-r" href="#start">Free audit <span class="arr">→</span></a><a class="btn btn-o call" id="stickyCall" href="tel:6302461901" aria-label="Call (630) 246-1901">Call</a></div>
+<script>
+/* Mon-Thu 10:30am-7pm Chicago Aamir is on shift and can text but not take calls: offer Text instead of Call. */
+(function(){try{var p=new Intl.DateTimeFormat("en-US",{timeZone:"America/Chicago",weekday:"short",hour:"numeric",minute:"numeric",hour12:false}).formatToParts(new Date()),g=function(k){return(p.find(function(x){return x.type===k})||{}).value};var d=g("weekday"),m=(+g("hour")%24)*60+(+g("minute"));if(["Mon","Tue","Wed","Thu"].indexOf(d)>-1&&m>=630&&m<1140){var a=document.getElementById("stickyCall");a.href="sms:6302461901";a.textContent="Text";a.setAttribute("aria-label","Text (630) 246-1901");}}catch(e){}})();
+</script>
 <script>
 (function(){
   /* Sophia's lead inbox: paste her Railway address here, e.g. 'https://sophia-production.up.railway.app/lead' */
@@ -592,7 +596,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
 
   /* sticky bar on phones once the hero form is scrolled past */
   var sticky=document.getElementById('sticky'),fc=document.getElementById('start');
-  var so=new IntersectionObserver(function(es){sticky.classList.toggle('on',!es[0].isIntersecting&&window.scrollY>200);},{threshold:0});so.observe(fc);
+  var so=new IntersectionObserver(function(es){sticky.classList.toggle('on',!es[0].isIntersecting);},{threshold:0});so.observe(fc);
   window.addEventListener('scroll',function(){if(window.scrollY<200)sticky.classList.remove('on');},{passive:true});
 
   /* form: Formspree keeps an email copy, Sophia alerts Aamir on Telegram. Either one succeeding counts. */
