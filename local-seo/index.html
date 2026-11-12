@@ -609,7 +609,14 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
     var sends=[fetch(form.action,{method:'POST',body:fd,headers:{'Accept':'application/json'}}).then(ok)];
     if(SOPHIA_LEAD_URL)sends.push(fetch(SOPHIA_LEAD_URL,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'application/json'},keepalive:true}).then(ok));
     var left=sends.length,done=false;
-    function win(){if(done)return;done=true;try{sessionStorage.setItem('pdm_lead_sent','1');sessionStorage.setItem('pdm_lead_name',(data.name||'').trim().split(' ')[0]);sessionStorage.setItem('pdm_lead_ec',JSON.stringify({e:(data.email||'').trim().toLowerCase(),p:(data.phone||'').replace(/\D/g,'')}));}catch(x){}location.href='/local-seo/thanks/';}
+    /* SOP Step 1.8: junk still reaches Aamir, but never counts as a Google Ads conversion. */
+    function junk(d){var ph=(d.phone||'').replace(/\D/g,'').slice(-10),em=(d.email||'').toLowerCase(),nm=(d.name||'')+' '+(d.business||'');
+      if((d._gotcha||'').trim())return true;
+      if(/^(\d)\1{9}$/.test(ph)||ph==='1234567890'||ph==='0123456789'||/^\d{3}5550[01]\d\d$/.test(ph))return true;
+      if(/@(test|example|mailinator|asdf|fake|guerrillamail|yopmail)\./.test(em)||/^(test|asdf|qwer)/.test(em))return true;
+      if(!/[a-z]{2}/i.test(d.name||'')||/^(test|asdf|qwer|xxx)/i.test(nm.trim()))return true;
+      return false;}
+    function win(){if(done)return;done=true;try{if(!junk(data))sessionStorage.setItem('pdm_lead_sent','1');sessionStorage.setItem('pdm_lead_name',(data.name||'').trim().split(' ')[0]);sessionStorage.setItem('pdm_lead_ec',JSON.stringify({e:(data.email||'').trim().toLowerCase(),p:(data.phone||'').replace(/\D/g,'')}));}catch(x){}location.href='/local-seo/thanks/';}
     function lose(){if(--left>0||done)return;btn.disabled=false;btn.firstChild.textContent='Try again ';alert('Something went wrong sending your request. Please text (630) 246-1901 or email Aamir@precisiondigitalm.com.');}
     sends.forEach(function(p){p.then(win,lose);});
   });
