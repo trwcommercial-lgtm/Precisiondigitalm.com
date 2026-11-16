@@ -417,7 +417,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
       <div class="status-h"><span>Schaumburg, IL</span><span class="live" id="live"><i></i><b id="liveTxt" style="font-weight:400">Open now</b></span></div>
       <div class="status-b">
         <strong id="stTitle">I'm available.</strong>
-        <span id="stSub">Call or text and you'll likely reach Aamir directly.</span>
+        <span id="stSub">Text and you'll likely hear back from Aamir directly.</span>
         <ul class="hours" id="hours">
           <li data-d="1,2,3,4,5"><span>Mon to Fri</span><span>10:00 am to 7:30 pm</span></li>
           <li data-d="6"><span>Saturday</span><span>11:30 am to 3:30 pm</span></li>
@@ -440,12 +440,12 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
         <p>Pick a 20-minute slot that works for you. Bring your numbers and leave with a plan.</p>
         <span class="go">Choose a time <i>↗</i></span>
       </a>
-      <a class="way" href="tel:6302461901">
+      <a class="way" href="sms:6302461901">
         <span class="way-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span>
         <span class="k">Option 02</span>
         <strong>(630) 246-1901</strong>
-        <p>Call or text during business hours. If I'm with a client, I'll call you back within the hour.</p>
-        <span class="go">Call now <i>→</i></span>
+        <p>Text during business hours. If I'm with a client, I'll reply within the hour.</p>
+        <span class="go">Text now <i>→</i></span>
       </a>
       <a class="way" href="mailto:Aamir@precisiondigitalm.com?subject=Marketing%20question%20from%20the%20website">
         <span class="way-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></svg></span>
@@ -568,10 +568,10 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
       <div>
         <p class="f-brand">PRECISION <span>DIGITAL</span> MARKETING</p>
         <p class="f-tag">We make local businesses impossible to ignore. Based in Schaumburg, with client work in Rolling Meadows, Elk Grove Village, Oak Brook and Darien.</p>
-        <a class="f-c" href="tel:6302461901">Ph: 630-246-1901</a>
+        <a class="f-c" href="sms:6302461901">Ph: 630-246-1901</a>
         <a class="f-c" href="mailto:Aamir@precisiondigitalm.com">Aamir@precisiondigitalm.com</a>
         <a class="f-c" href="https://www.instagram.com/precisiondigitalm" target="_blank" rel="noopener">@precisiondigitalm</a>
-        <div class="f-nap"><b>Precision Digital Marketing</b><br>80 S Lincoln Meadows Dr, Suite 1624<br>Schaumburg, IL 60173<br><a href="tel:6302461901">(630) 246-1901</a></div>
+        <div class="f-nap"><b>Precision Digital Marketing</b><br>80 S Lincoln Meadows Dr, Suite 1624<br>Schaumburg, IL 60173<br><a href="sms:6302461901">(630) 246-1901</a></div>
       </div>
       <div><p class="f-t">Services</p><ul class="f-links"><li><a href="/services/local-seo/">Google Maps</a></li><li><a href="/services/meta-ads/">Meta Ads</a></li><li><a href="/services/google-ads/">Google Ads</a></li><li><a href="/services/local-seo/">Local SEO</a></li><li><a href="/services/">AI Lead Gen</a></li></ul></div>
       <div><p class="f-t">Company</p><ul class="f-links"><li><a href="/about/">About Aamir</a></li><li><a href="/portfolio/">Client Results</a></li><li></li><li><a href="/contact/">Contact</a></li><li><a href="https://trwcommercial-lgtm.github.io/Landingpage/" target="_blank" rel="noopener">Free Playbook</a></li></ul></div>
@@ -622,7 +622,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
     document.getElementById('liveTxt').textContent=open?'Open now':'Closed now';
     document.querySelectorAll('#hours li').forEach(function(li){li.classList.toggle('today',li.dataset.d.split(',').indexOf(String(c.d))>-1);});
     var t=document.getElementById('stTitle'),s=document.getElementById('stSub');
-    if(open){t.textContent="I'm available.";s.textContent='Open until '+fmt(h[1])+'. Call or text and you will likely reach Aamir directly.';}
+    if(open){t.textContent="I'm available.";s.textContent='Open until '+fmt(h[1])+'. Text and you will likely hear back from Aamir directly.';}
     else{var nd=c.d,k=0,when;do{k++;nd=(c.d+k)%7;}while(!HRS[nd]&&k<8);
       if(h&&c.m<h[0]){when='today at '+fmt(h[0]);}else{when=(k===1?'tomorrow':DAYS[nd])+' at '+fmt(HRS[nd][0]);}
       t.textContent='Back '+when.split(' at ')[0]+'.';s.textContent='Opens '+when+'. Leave a message or book a time and you will hear back first thing.';}
