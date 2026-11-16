@@ -625,7 +625,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
     if(open){t.textContent="I'm available.";s.textContent='Open until '+fmt(h[1])+'. Text and you will likely hear back from Aamir directly.';}
     else{var nd=c.d,k=0,when;do{k++;nd=(c.d+k)%7;}while(!HRS[nd]&&k<8);
       if(h&&c.m<h[0]){when='today at '+fmt(h[0]);}else{when=(k===1?'tomorrow':DAYS[nd])+' at '+fmt(HRS[nd][0]);}
-      t.textContent='Back '+when.split(' at ')[0]+'.';s.textContent='Opens '+when+'. Leave a message or book a time and you will hear back first thing.';}
+      t.textContent='Back '+when.split(' at ')[0]+'.';s.textContent='Opens '+when+'. Send a text or book a time and you will hear back first thing.';}
   }
   hours();setInterval(hours,60000);
 
