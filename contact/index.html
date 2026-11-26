@@ -652,7 +652,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
     var first=(document.getElementById('fName').value.trim().split(' ')[0])||'thanks';
     document.getElementById('doneName').textContent=first;
     btn.disabled=true;btn.firstChild.textContent='Sending ';
-    function ok(){panel.classList.add('sent');panel.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});}
+    function ok(){try{if(window.gtag&&!DEMO)gtag('event','generate_lead',{send_to:'G-YFP047KDBH',form_name:'contact'});}catch(x){}panel.classList.add('sent');panel.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});}
     if(DEMO){setTimeout(ok,700);return;}
     fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
       .then(function(r){if(r.ok)ok();else throw 0;})

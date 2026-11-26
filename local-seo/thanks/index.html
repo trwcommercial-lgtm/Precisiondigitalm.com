@@ -11,6 +11,8 @@
      The tag loads on this page and the thank-you page; the conversion counts only on the thank-you page after a real form submit. -->
 <!-- Google Ads tag (PDM, account 576-884-2494): lead form tracking. Call tracking off on purpose: Google forwarding numbers can't receive texts. -->
 <script>window.PDM_ADS={id:'AW-18567733535',lead:'R7YeCOuc6rUdEJ_C5JVF',call:'',phone:'(630) 246-1901'};(function(c){if(!c.id)return;var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id='+c.id;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag('js',new Date());gtag('config',c.id,{allow_enhanced_conversions:true});gtag('config','G-YFP047KDBH');if(c.call)gtag('config',c.id+'/'+c.call,{phone_conversion_number:c.phone});})(window.PDM_ADS);</script>
+<!-- Meta Pixel (PDM, dataset 1364484018033329): loaded here, started in the script at the bottom so the Lead can carry the email and phone for matching. -->
+<script>window.PDM_META={pixel:'1364484018033329'};!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -451,6 +453,16 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
     /* Enhanced conversions: Google's tag hashes these before sending. Phone in E.164 (US). */
     if(ec&&(ec.e||ec.p)){var u={};if(ec.e)u.email=ec.e;if(ec.p)u.phone_number='+'+(ec.p.length===10?'1'+ec.p:ec.p);gtag('set','user_data',u);}
     gtag('event','conversion',{send_to:c.id+'/'+c.lead,value:360,currency:'USD'});
+  }
+  /* GA4 key event (task row 114): GA4 never got a lead event, only Google Ads did. Same rule: real submit only, once. */
+  if(sent==='1'&&window.gtag){gtag('event','generate_lead',{send_to:'G-YFP047KDBH',value:360,currency:'USD',form_name:'local seo audit'});}
+  /* Meta Pixel: same rule. PageView on every visit, Lead only after a real form submit, once.
+     Meta hashes the email and phone in the browser before sending (manual advanced matching). */
+  var m=window.PDM_META||{};
+  if(m.pixel&&window.fbq){
+    var am={};if(ec&&ec.e)am.em=ec.e;if(ec&&ec.p)am.ph=(ec.p.length===10?'1'+ec.p:ec.p);
+    fbq('init',m.pixel,am);fbq('track','PageView');
+    if(sent==='1')fbq('track','Lead',{value:360,currency:'USD',content_name:'Local SEO audit'});
   }
 })();
 </script>
