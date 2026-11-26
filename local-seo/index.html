@@ -456,6 +456,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
           <div class="fg"><label for="fInd">Industry <em>Optional</em></label><select id="fInd" name="industry"><option value="">Select one</option><option>Home services (HVAC, plumbing, roofing...)</option><option>Restaurants &amp; venues</option><option>Salons &amp; beauty</option><option>Med spas &amp; wellness</option><option>Fitness studios &amp; gyms</option><option>Dental &amp; medical</option><option>Auto repair</option><option>Legal</option><option>Real estate</option><option>Professional services</option><option>Other local business</option></select></div>
           <div class="fg"><label for="fCity">City</label><input id="fCity" name="city" autocomplete="address-level2" placeholder="e.g. Schaumburg" required><span class="msg">Please add your city.</span></div>
         </div>
+        <div class="fg"><label for="fOwner">Do you own or run a local business?</label><select id="fOwner" name="owns_business" required><option value="">Select one</option><option>Yes, I own it</option><option>Yes, I run or manage it</option><option>No</option></select><span class="msg">Please pick one.</span></div>
         <div class="fg"><label for="fHear">How did you hear about us? <em>Optional</em></label><select id="fHear" name="heard_about_us"><option value="">Select one</option><option>Google search</option><option>Google Maps</option><option>ChatGPT or another AI assistant</option><option>Instagram</option><option>LinkedIn</option><option>Facebook</option><option>A friend or client referred me</option><option>Other</option></select></div>
         <div class="fg"><label for="fWeb">Website <em>Optional</em></label><input id="fWeb" name="website" type="text" inputmode="url" placeholder="yourbusiness.com"></div>
         <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -618,6 +619,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
     /* SOP Step 1.8: junk still reaches Aamir, but never counts as a Google Ads conversion. */
     function junk(d){var ph=(d.phone||'').replace(/\D/g,'').slice(-10),em=(d.email||'').toLowerCase(),nm=(d.name||'')+' '+(d.business||'');
       if((d._gotcha||'').trim())return true;
+      if(d.owns_business==='No')return true; /* row 105: only owners and managers count as a lead for Google and Meta */
       if(/^(\d)\1{9}$/.test(ph)||ph==='1234567890'||ph==='0123456789'||/^\d{3}5550[01]\d\d$/.test(ph))return true;
       if(/@(test|example|mailinator|asdf|fake|guerrillamail|yopmail)\./.test(em)||/^(test|asdf|qwer)/.test(em))return true;
       if(!/[a-z]{2}/i.test(d.name||'')||/^(test|asdf|qwer|xxx)/i.test(nm.trim()))return true;
