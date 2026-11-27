@@ -457,7 +457,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
         <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="_subject" value="New Local SEO lead (Google Ads landing page)">
         <input type="hidden" name="source" value="local-seo landing page">
-        <input type="hidden" name="gclid" id="hGclid"><input type="hidden" name="utm_source" id="hSrc"><input type="hidden" name="utm_campaign" id="hCamp"><input type="hidden" name="utm_term" id="hTerm">
+        <input type="hidden" name="gclid" id="hGclid"><input type="hidden" name="utm_source" id="hSrc"><input type="hidden" name="utm_campaign" id="hCamp"><input type="hidden" name="utm_term" id="hTerm"><input type="hidden" name="utm_medium" id="hMed"><input type="hidden" name="utm_content" id="hCont">
         <button class="btn btn-r submit" type="submit" id="fSubmit">Audit my profile <span class="arr">→</span></button>
         <p class="fine">Free, no obligation. I text you back within the hour, 8am to 8pm. <a href="/privacy/">Privacy policy</a></p>
         <a class="alt" href="https://calendly.com/trwcommercial/marketing-consultation" target="_blank" rel="noopener">Or book a 20-minute call now ↗</a>
@@ -589,7 +589,7 @@ h1,h2,h3{font-family:var(--h);font-weight:400;letter-spacing:.5px;line-height:.9
 
   /* capture ad click info so every lead shows its source */
   try{var q=new URLSearchParams(location.search);
-    [['gclid','hGclid'],['utm_source','hSrc'],['utm_campaign','hCamp'],['utm_term','hTerm']].forEach(function(p){var v=q.get(p[0])||sessionStorage.getItem('pdm_'+p[0]);if(v){sessionStorage.setItem('pdm_'+p[0],v);document.getElementById(p[1]).value=v;}});
+    [['gclid','hGclid'],['utm_source','hSrc'],['utm_campaign','hCamp'],['utm_term','hTerm'],['utm_medium','hMed'],['utm_content','hCont']].forEach(function(p){var v=q.get(p[0])||sessionStorage.getItem('pdm_'+p[0]);if(v){sessionStorage.setItem('pdm_'+p[0],v);document.getElementById(p[1]).value=v;}});
   }catch(e){}
 
   /* sticky bar on phones once the hero form is scrolled past */
